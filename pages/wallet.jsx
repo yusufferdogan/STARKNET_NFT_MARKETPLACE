@@ -2,7 +2,6 @@ import React from 'react';
 import data from '../constants/data.json';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { useContractRead, useAccount, useContractReads } from 'wagmi';
 import { NFT_ABI, NFT_CONTRACT_ADDRESS } from '../constants/nft';
 const baseUrl =
   'https://opensea.io/assets/ethereum/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d/';

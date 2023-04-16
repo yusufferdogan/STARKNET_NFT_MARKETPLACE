@@ -1,12 +1,4 @@
 import { React } from 'react';
-import {
-  useAccount,
-  useBalance,
-  usePrepareContractWrite,
-  useContractWrite,
-  useContractRead,
-  useSigner,
-} from 'wagmi';
 
 import { Text, Button, useInput } from '@nextui-org/react';
 import {

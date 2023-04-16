@@ -7,10 +7,10 @@ import Body from '../components/Body';
 const Home = () => {
   return (
     <>
-      <CustomHead></CustomHead>
+      {/* <CustomHead></CustomHead> */}
       <Header></Header>
-      <Body></Body>
-      <Footer></Footer>
+      {/* <Body></Body>
+      <Footer></Footer> */}
     </>
   );
 };

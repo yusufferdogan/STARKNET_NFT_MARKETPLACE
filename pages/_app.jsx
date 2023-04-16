@@ -1,5 +1,4 @@
 import '../styles/globals.css';
-import '@rainbow-me/rainbowkit/styles.css';
 import { useState, useEffect } from 'react';
 import { StarknetConfig, InjectedConnector } from '@starknet-react/core';
 

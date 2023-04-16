@@ -2,15 +2,6 @@ import React from 'react';
 import { CustomHead } from '../components/Head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { ethers } from 'ethers';
-import {
-  useAccount,
-  useBalance,
-  usePrepareContractWrite,
-  useContractWrite,
-  useContractRead,
-  useSigner,
-} from 'wagmi';
 import { NFT_ABI, NFT_CONTRACT_ADDRESS } from '../constants/nft';
 const MintBody = () => {
   function Mint({ value }) {
@@ -29,9 +20,9 @@ const MintBody = () => {
       onError(error) {
         console.log('Error', error);
       },
-      overrides: {
-        value: ethers.utils.parseEther('0.001'),
-      },
+      // overrides: {
+      //   value: ethers.utils.parseEther('0.001'),
+      // },
     });
     const { data, isLoading, isSuccess, write } = useContractWrite(config);
 

@@ -1,16 +1,34 @@
 import React from 'react';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { useAccount } from 'wagmi';
-import { Navbar, Text, Avatar } from '@nextui-org/react';
+import { useState, useEffect } from 'react';
+import { useConnectors } from '@starknet-react/core';
 import Link from 'next/link';
-function ConnectWallet({ show = 'always' }) {
-  const { isConnected } = useAccount();
-  if (
-    (show === 'connected' && !isConnected) ||
-    (show === 'disconnected' && isConnected)
-  )
-    return null;
-  return <ConnectButton />;
+function ConnectWallet() {
+  const { connect, connectors, disconnect, available, refresh } =
+    useConnectors();
+
+  useEffect(() => {
+    // refresh all available connectors every 5 seconds
+    const interval = setInterval(refresh, 5000);
+    return () => clearInterval(interval);
+  }, [refresh]);
+
+  return (
+    // connect wallet
+    <div>
+      <ul>
+        {available.map((connector) => (
+          <div key={connector.id()}>
+            <button key={connector.id()} onClick={() => connect(connector)}>
+              Connect {connector.id()}
+            </button>
+          </div>
+        ))}
+      </ul>
+      <div>
+        <button onClick={disconnect}>Disconnect</button>
+      </div>
+    </div>
+  );
 }
 
 function Header() {
@@ -85,7 +103,7 @@ function Header() {
           </div>
           <div className="flex items-center gap-4">
             <div className="sm:flex sm:gap-4">
-              <ConnectButton></ConnectButton>
+              <ConnectWallet></ConnectWallet>
             </div>
           </div>
           <div className="block md:hidden">
