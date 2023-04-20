@@ -9,7 +9,8 @@ const Home = () => {
     <>
       {/* <CustomHead></CustomHead> */}
       <Header></Header>
-      {/* <Body></Body>
+      <Body></Body>
+      {/* 
       <Footer></Footer> */}
     </>
   );
