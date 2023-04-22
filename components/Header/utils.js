@@ -72,14 +72,14 @@ export function OpenModal({ available, connect, connectors }) {
               <button className="h-1"></button>
 
               <div className="py-6 px-10 mx-20 my-10 text-center">
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-4 w-max">
                   <button
                     data-modal-hide="popup-modal"
                     type="button"
                     className="text-white bg-purple-500 hover:bg-purple-600 focus:ring-4 focus:outline-none focus:ring-purple-200 rounded-lg border border-purple-200 text-sm font-medium  hover:text-white focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600 px-5 py-2.5"
                     onClick={() => connectToWallet(connectors[0])}
                   >
-                    <div className="flex flex-row items-center gap-2">
+                    <div className="flex flex-row items-center gap-4">
                       <Image
                         src={Bravoos}
                         alt="My SVG"
@@ -97,12 +97,24 @@ export function OpenModal({ available, connect, connectors }) {
                   <button
                     data-modal-hide="popup-modal"
                     type="button"
-                    className="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-purple-200 rounded-lg border border-purple-200 text-sm font-medium px-5 py-2.5 hover:text-white focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+                    className="text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-200 rounded-lg border border-blue-200 text-sm font-medium px-5 py-2.5 shadow-md hover:text-white focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
                     onClick={() => connectToWallet(connectors[1])}
                   >
-                    {isWalletAvailable('argentX', available)
-                      ? 'Connect to argentX'
-                      : 'install argentX'}
+                    <div className="flex flex-row items-center gap-4 w-max">
+                      <Image
+                        src={Argent}
+                        alt="My SVG"
+                        width={50}
+                        height={50}
+                        className="px-10"
+                      />
+                      <p>
+                        {isWalletAvailable('argentX', available)
+                          ? 'Connect to argentX'
+                          : 'install argentX'}
+                      </p>
+                      <div className="pl-10"></div>
+                    </div>
                   </button>
                 </div>
               </div>
