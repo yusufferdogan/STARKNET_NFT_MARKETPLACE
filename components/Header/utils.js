@@ -1,0 +1,171 @@
+import { useConnectors, useAccount } from '@starknet-react/core';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Modal from 'react-modal';
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import Argent from '../../constants/images/argent.svg';
+import Bravoos from '../../constants/images/bravoos.svg';
+
+export function OpenModal({ available, connect, connectors }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  function handleOpenModal() {
+    setIsOpen(true);
+  }
+
+  function handleCloseModal() {
+    setIsOpen(false);
+  }
+
+  function isWalletAvailable(connector, available) {
+    return available.find((obj) => obj.id() === connector) !== undefined;
+  }
+
+  function connectToWallet(connector) {
+    connect(connector);
+    handleCloseModal();
+  }
+
+  if (isOpen)
+    return (
+      <div
+        id="popup-modal"
+        tabIndex={-1}
+        className="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
+      >
+        <Modal
+          appElement={document.getElementById('body')}
+          className="fixed z-50 inset-0 overflow-y-auto"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          isOpen={isOpen}
+          onRequestClose={handleCloseModal}
+          ariaHideApp={false}
+        >
+          <div className="flex justify-center items-center flex-col min-h-screen">
+            <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+              <button
+                type="button"
+                className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
+                data-modal-hide="popup-modal"
+                onClick={handleCloseModal}
+              >
+                <svg
+                  aria-hidden="true"
+                  className="w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <span className="sr-only">Close modal</span>
+              </button>
+              <button className="h-1"></button>
+
+              <div className="py-6 px-10 mx-20 my-10 text-center">
+                <div className="flex flex-col gap-2">
+                  <button
+                    data-modal-hide="popup-modal"
+                    type="button"
+                    className="text-white bg-purple-500 hover:bg-purple-600 focus:ring-4 focus:outline-none focus:ring-purple-200 rounded-lg border border-purple-200 text-sm font-medium  hover:text-white focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600 px-5 py-2.5"
+                    onClick={() => connectToWallet(connectors[0])}
+                  >
+                    <div className="flex flex-row items-center gap-2">
+                      <Image
+                        src={Bravoos}
+                        alt="My SVG"
+                        width={50}
+                        height={50}
+                        className="px-10"
+                      />
+                      <p>
+                        {isWalletAvailable('bravoos', available)
+                          ? 'Connect to Bravoos'
+                          : 'install Bravoos'}
+                      </p>
+                    </div>
+                  </button>
+                  <button
+                    data-modal-hide="popup-modal"
+                    type="button"
+                    className="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-purple-200 rounded-lg border border-purple-200 text-sm font-medium px-5 py-2.5 hover:text-white focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+                    onClick={() => connectToWallet(connectors[1])}
+                  >
+                    {isWalletAvailable('argentX', available)
+                      ? 'Connect to argentX'
+                      : 'install argentX'}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Modal>
+      </div>
+    );
+  else return <Button onClick={handleOpenModal}></Button>;
+}
+export function Button({ key, text, onClick }) {
+  return (
+    <button
+      key="{key}"
+      type="button"
+      className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+      onClick={onClick}
+    >
+      Connect Wallet
+    </button>
+  );
+}
+export function ConnectWallet() {
+  const { connect, connectors, disconnect, available, refresh } =
+    useConnectors();
+  const { account, address, status } = useAccount();
+
+  useEffect(() => {
+    // refresh all available connectors every 5 seconds
+    const interval = setInterval(refresh, 1000);
+    return () => clearInterval(interval);
+  }, [refresh, connect]);
+
+  if (status === 'connected') {
+    return (
+      <button
+        type="button"
+        className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+        onClick={() => {
+          navigator.clipboard.writeText(address);
+          toast.success('Address Copied', {
+            position: 'top-right',
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'dark',
+          });
+        }}
+      >
+        {address.substring(0, 4) +
+          '..' +
+          address.substring(address.length - 4, address.length)}
+      </button>
+    );
+  } else
+    return (
+      <OpenModal
+        available={available}
+        connectors={connectors}
+        connect={connect}
+      ></OpenModal>
+    );
+}
