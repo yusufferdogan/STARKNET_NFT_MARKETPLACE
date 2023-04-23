@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Argent from '../../constants/images/argent.svg';
 import Bravoos from '../../constants/images/bravoos.svg';
+import css from './Header.module.css';
 
 export function OpenModal({ available, connect, connectors }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,13 +27,13 @@ export function OpenModal({ available, connect, connectors }) {
     connect(connector);
     handleCloseModal();
   }
-
   if (isOpen)
     return (
       <div
         id="popup-modal"
         tabIndex={-1}
-        className="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
+        className=" fixed top-0 left-0 right-0 z-50 hidden p-4
+         overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
       >
         <Modal
           appElement={document.getElementById('body')}
@@ -41,13 +42,23 @@ export function OpenModal({ available, connect, connectors }) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            backgroundColor: '#333333',
+            overlay: {
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: 'rgba(0, 0, 0, 0.75)',
+            },
           }}
           isOpen={isOpen}
           onRequestClose={handleCloseModal}
           ariaHideApp={false}
+          // overlayClassName={css.overlay}
         >
           <div className="flex justify-center items-center flex-col min-h-screen">
-            <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <div className="relative rounded-lg shadow bg-gray-900">
               <button
                 type="button"
                 className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
@@ -129,12 +140,13 @@ export function OpenModal({ available, connect, connectors }) {
     );
   else return <Button onClick={handleOpenModal}></Button>;
 }
+//
 export function Button({ key, text, onClick }) {
   return (
     <button
       key="{key}"
       type="button"
-      className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+      className="bg-white hover:bg-gray-200 text-gray-800  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
       onClick={onClick}
     >
       Connect Wallet
