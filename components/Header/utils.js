@@ -76,7 +76,9 @@ export function OpenModal({ available, connect, connectors }) {
                   <button
                     data-modal-hide="popup-modal"
                     type="button"
-                    className="text-white bg-purple-500 hover:bg-purple-600 focus:ring-4 focus:outline-none focus:ring-purple-200 rounded-lg border border-purple-200 text-sm font-medium  hover:text-white focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600 px-5 py-2.5"
+                    className="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none
+                    focus:ring-gray-800 rounded-lg border border-gray-900 text-md font-medium px-5 py-2.5 shadow-md
+                     hover:text-white focus:z-10"
                     onClick={() => connectToWallet(connectors[0])}
                   >
                     <div className="flex flex-row items-center gap-4">
@@ -97,7 +99,9 @@ export function OpenModal({ available, connect, connectors }) {
                   <button
                     data-modal-hide="popup-modal"
                     type="button"
-                    className="text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-200 rounded-lg border border-blue-200 text-sm font-medium px-5 py-2.5 shadow-md hover:text-white focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+                    className="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none
+                     focus:ring-gray-800 rounded-lg border border-gray-900 text-md font-medium px-5 py-2.5 shadow-md
+                      hover:text-white focus:z-10"
                     onClick={() => connectToWallet(connectors[1])}
                   >
                     <div className="flex flex-row items-center gap-4 w-max">

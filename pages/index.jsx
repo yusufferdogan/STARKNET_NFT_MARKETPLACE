@@ -3,13 +3,15 @@ import { CustomHead } from '../components/Head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Body from '../components/Body';
+import Main from '../components/Main';
 
 const Home = () => {
   return (
     <>
       {/* <CustomHead></CustomHead> */}
       <Header></Header>
-      <Body></Body>
+      <Main></Main>
+      {/* <Body></Body> */}
       {/* 
       <Footer></Footer> */}
     </>
