@@ -18,29 +18,6 @@ function CollectionItem(props) {
     imageUrl,
   } = props;
 
-  //   return (
-  //     <div className="flex items-center mt-5 pt-5">
-  //       <div className="flex justify-evenly w-16 h-16 rounded-full bg-white shadow-md mr-4">
-  //         <img
-  //           className="w-12 h-12 rounded-full"
-  //           src={imageUrl}
-  //           alt={collection}
-  //         />
-  //       </div>
-  //       <div className="flex flex-row">
-  //   <p className="w-2/12">{collection}</p>
-  //   {/* <p className="w-1/12 px-5"></p> */}
-  //   <p className="w-1/12">{floorPrice}</p>
-  //   <p className="w-1/12">{oneDayChange}</p>
-  //   <p className="w-1/12">{sevenDayChange}</p>
-  //   <p className="w-1/12">{oneDayVolume}</p>
-  //   <p className="w-1/12">{sevenDayVolume}</p>
-  //   <p className="w-1/12">{owners}</p>
-  //   <p className="w-1/12">{supply}</p>
-  //   <p className="w-1/12">{maxSupply}</p>
-  //       </div>
-  //     </div>
-  //   );
   const words = collection.split(' ');
 
   return (
@@ -71,34 +48,27 @@ function CollectionItem(props) {
     </div>
   );
 }
+function TableHeader({ text }) {
+  return <div className="w-1/12 px-5 font-bold text-emerald-700">{text}</div>;
+}
+
 const CollectionTable = () => {
   return (
     <div className="mt-5 pt-5">
       <div className="flex items-center w-max h-12 m-5">
         <div className="pr-40 font-bold text-emerald-700">COLLECTION</div>
         <div className="flex items-center flex-row w-screen">
-          <div className="w-1/12 px-5 font-bold text-emerald-700">
-            FLOOR PRICE
-          </div>
-          <div className="w-1/12 px-5 font-bold  text-emerald-700">
-            1D CHANGE
-          </div>
-          <div className="w-1/12 px-5 font-bold  text-emerald-700">
-            7D CHANGE
-          </div>
-          <div className="w-1/12 px-5 font-bold text-emerald-700">
-            1D VOLUME
-          </div>
-          <div className="w-1/12 px-5 font-bold  text-emerald-700">
-            7D VOLUME
-          </div>
-          <div className="w-1/12 px-5 font-bold  text-emerald-700">OWNERS</div>
-          <div className="w-1/12 px-5 font-bold  text-emerald-700">SUPPLY</div>
-          <div className="w-1/12 px-5 font-bold  text-emerald-700">
-            MAX SUPPLY
-          </div>
+          <TableHeader text="FLOOR PRICE" />
+          <TableHeader text="1D CHANGE" />
+          <TableHeader text="7D CHANGE" />
+          <TableHeader text="1D VOLUME" />
+          <TableHeader text="7D VOLUME" />
+          <TableHeader text="OWNERS" />
+          <TableHeader text="SUPPLY" />
+          <TableHeader text="MAX SUPPLY" />
         </div>
       </div>
+      <div class="border border-gray-500"></div>
 
       {collectionData.map((item, index) => (
         <CollectionItem
