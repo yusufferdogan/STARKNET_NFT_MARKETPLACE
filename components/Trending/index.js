@@ -68,7 +68,7 @@ const CollectionTable = () => {
           <TableHeader text="MAX SUPPLY" />
         </div>
       </div>
-      <div class="border border-gray-500"></div>
+      <div className="border border-gray-500"></div>
 
       {collectionData.map((item, index) => (
         <CollectionItem

@@ -4,6 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'tailwindcss/tailwind.css';
 import Trending from '../Trending';
+import { ToastContainer, toast } from 'react-toastify';
 
 const data = [
   {
@@ -32,7 +33,7 @@ function Carousel() {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 500,
+    speed: 1000,
     slidesToShow: 3,
     slidesToScroll: 1,
     mobileFirst: true,
@@ -41,6 +42,7 @@ function Carousel() {
 
   return (
     <div className="container mx-auto">
+      <ToastContainer />
       <Slider {...settings}>
         {data.map((item, index) => (
           <div key={index} className="relative p-4">
