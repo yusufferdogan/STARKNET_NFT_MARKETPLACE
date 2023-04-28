@@ -1,13 +1,9 @@
-import { React, useState, useEffect } from 'react';
-
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 import styles from './styles.module.css';
 import { collectionData } from './data';
-import classnames from 'classnames';
-import { FiChevronUp, FiChevronDown } from 'react-icons/fi';
-
 function CollectionItem(props) {
   const {
     collection,
@@ -52,47 +48,24 @@ function CollectionItem(props) {
     </div>
   );
 }
-
-const tableHeaders = [
-  { text: 'FLOOR PRICE' },
-  { text: '1D CHANGE' },
-  { text: '7D CHANGE' },
-  { text: '1D VOLUME' },
-  { text: '7D VOLUME' },
-  { text: 'OWNERS' },
-  { text: 'SUPPLY' },
-  { text: 'MAX SUPPLY' },
-];
-
-function TableHeader({ text, id, clickedId, setClickedId }) {
-  const color = clickedId === id ? 'text-yellow-500' : 'text-emerald-700';
-  const divClassNames = classnames('font-bold', color);
-
-  return (
-    <button className="w-1/12 px-5" onClick={() => setClickedId(id)}>
-      <div className={divClassNames}>{text}</div>
-    </button>
-  );
+function TableHeader({ text }) {
+  return <div className="w-1/12 px-5 font-bold text-emerald-700">{text}</div>;
 }
-const CollectionTable = () => {
-  const [clickedId, setClickedId] = useState(null);
 
+const CollectionTable = () => {
   return (
     <div className="mt-5 pt-5">
       <div className="flex items-center w-max h-12 m-5">
-        <div className="pr-36 font-bold text-emerald-700">COLLECTION</div>
+        <div className="pr-40 font-bold text-emerald-700">COLLECTION</div>
         <div className="flex items-center flex-row w-screen">
-          {tableHeaders.map((item, index) => {
-            return (
-              <TableHeader
-                text={item.text}
-                id={index}
-                key={index}
-                clickedId={clickedId}
-                setClickedId={setClickedId}
-              />
-            );
-          })}
+          <TableHeader text="FLOOR PRICE" />
+          <TableHeader text="1D CHANGE" />
+          <TableHeader text="7D CHANGE" />
+          <TableHeader text="1D VOLUME" />
+          <TableHeader text="7D VOLUME" />
+          <TableHeader text="OWNERS" />
+          <TableHeader text="SUPPLY" />
+          <TableHeader text="MAX SUPPLY" />
         </div>
       </div>
       <div className="border border-gray-500"></div>
