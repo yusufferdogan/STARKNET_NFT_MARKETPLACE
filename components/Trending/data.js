@@ -6,7 +6,7 @@ export const collectionData = [
     sevenDayChange: 5.96,
     oneDayVolume: 5,
     sevenDayVolume: 2169.2,
-    owners: 17565.06,
+    owners: 5618,
     supply: 5652,
     maxSupply: 10000,
   },

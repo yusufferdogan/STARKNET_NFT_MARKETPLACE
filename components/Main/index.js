@@ -63,7 +63,7 @@ function Carousel() {
         ))}
       </Slider>
       <Trending></Trending>
-      <BackupTranding></BackupTranding>
+      {/* <BackupTranding></BackupTranding> */}
     </div>
   );
 }

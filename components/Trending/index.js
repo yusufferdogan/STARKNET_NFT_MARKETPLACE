@@ -2,11 +2,12 @@ import { React, useState, useEffect } from 'react';
 
 import Link from 'next/link';
 import Image from 'next/image';
-
 import styles from './styles.module.css';
+
 import { collectionData } from './data';
 import classnames from 'classnames';
 import { FiChevronUp, FiChevronDown } from 'react-icons/fi';
+import { sorter } from './sorters';
 
 function CollectionItem(props) {
   const {
@@ -31,7 +32,7 @@ function CollectionItem(props) {
         <img
           className="w-12 h-12 rounded-full"
           src="https://images.blur.io/_blur-prod/0xed5af388653567af2f388e6224dc7c4b3241c544/4361-29b9f08af6d9c52f?w=128&h=128"
-          //   alt={collection}
+          alt={collection}
         />
         <div className="w-12 px-5">
           {words.map((word, index) => (
@@ -42,8 +43,20 @@ function CollectionItem(props) {
       <div className="flex justify-self-stretch flex-row w-screen">
         {/* <p className="w-1/12 px-5"></p> */}
         <p className="w-1/12 px-5 self-end">{floorPrice}</p>
-        <p className="w-1/12 px-5 self-end">{oneDayChange}</p>
-        <p className="w-1/12 px-5 text-left">{sevenDayChange}</p>
+        <p
+          className={`w-1/12 px-5 self-end ${
+            oneDayChange < 0 ? 'text-red-500' : 'text-green-500'
+          }`}
+        >
+          {oneDayChange + '%'}
+        </p>{' '}
+        <p
+          className={`w-1/12 px-5 self-end ${
+            sevenDayChange < 0 ? 'text-red-500' : 'text-green-500'
+          }`}
+        >
+          {sevenDayChange + '%'}
+        </p>
         <p className="w-1/12 px-5 text-left">{oneDayVolume}</p>
         <p className="w-1/12 px-5">{sevenDayVolume}</p>
         <p className="w-1/12 px-5">{owners}</p>
@@ -72,19 +85,20 @@ function TableHeader({
   setClickedId,
   isDescending,
   setIsDescending,
+  setShownData,
 }) {
   console.log('isDescending:', isDescending);
   const isClicked = clickedId === id;
-  const color = isClicked ? 'text-yellow-500' : 'text-emerald-700';
+  //text-[#2f72ed]
+  const color = isClicked ? 'text-blue-500' : 'text-orange-500';
   const divClassNames = classnames('font-bold', color);
 
   const handleButtonClick = () => {
-    if (isClicked) {
-      setIsDescending(!isDescending);
-    } else {
-      setIsDescending(false);
-      setClickedId(id);
-    }
+    setClickedId(id);
+    setIsDescending(false);
+    sorter(id, isDescending, setIsDescending, setShownData);
+
+    console.log('clicked TO:', id);
   };
 
   return (
@@ -100,15 +114,24 @@ function TableHeader({
 const CollectionTable = () => {
   const [clickedId, setClickedId] = useState(null);
   const [isDescending, setIsDescending] = useState(false);
+  const [shownData, setShownData] = useState(collectionData);
 
   return (
     <div className="mt-5 pt-5">
       <div className="flex items-center w-max h-12 m-5">
-        <button className="pr-36" onClick={() => setClickedId(null)}>
-          <div className="font-bold text-emerald-700">COLLECTION</div>
+        <button
+          className="pr-36"
+          onClick={() => {
+            setClickedId(null);
+            setShownData(collectionData);
+            setIsDescending(false);
+          }}
+        >
+          <div className="font-bold text-orange-500">COLLECTION</div>
         </button>
         <div className="flex items-center flex-row w-screen">
           {tableHeaders.map((item, index) => {
+            console.log('i:', index, ':', item.text);
             return (
               <TableHeader
                 text={item.text}
@@ -118,6 +141,7 @@ const CollectionTable = () => {
                 setClickedId={setClickedId}
                 setIsDescending={setIsDescending}
                 isDescending={isDescending}
+                setShownData={setShownData}
               />
             );
           })}
@@ -125,7 +149,7 @@ const CollectionTable = () => {
       </div>
       <div className="border border-gray-500"></div>
 
-      {collectionData.map((item, index) => (
+      {shownData.map((item, index) => (
         <CollectionItem
           key={index}
           collection={item.collection}
