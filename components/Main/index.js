@@ -47,6 +47,7 @@ function Carousel() {
       <Slider {...settings}>
         {data.map((item, index) => (
           <div key={index} className="relative p-4">
+            {/*eslint-disable-next-line @next/next/no-img-element*/}
             <img
               src={item.imgUrl}
               alt={item.text}
@@ -54,9 +55,7 @@ function Carousel() {
             />
             <p
               className="absolute bottom-5 left-5 px-4 py-2
-             text-white text-lg font-extrabold bg-opacity-75 backdrop-blur-lg
-             
-             "
+             text-white text-lg font-extrabold bg-opacity-75 backdrop-blur-lg"
             >
               {item.text}
             </p>

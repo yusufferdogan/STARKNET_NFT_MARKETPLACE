@@ -27,6 +27,7 @@ function CollectionItem(props) {
   return (
     <div className="flex items-center m-6 pt-6 w-max">
       <div className="flex items-center pr-40">
+        {/*eslint-disable-next-line @next/next/no-img-element*/}
         <img
           className="w-12 h-12 rounded-full"
           src="https://images.blur.io/_blur-prod/0xed5af388653567af2f388e6224dc7c4b3241c544/4361-29b9f08af6d9c52f?w=128&h=128"
