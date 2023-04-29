@@ -64,23 +64,48 @@ const tableHeaders = [
   { text: 'MAX SUPPLY' },
 ];
 
-function TableHeader({ text, id, clickedId, setClickedId }) {
-  const color = clickedId === id ? 'text-yellow-500' : 'text-emerald-700';
+function TableHeader({
+  text,
+  id,
+  clickedId,
+  setClickedId,
+  isDescending,
+  setIsDescending,
+}) {
+  console.log('isDescending:', isDescending);
+  const isClicked = clickedId === id;
+  const color = isClicked ? 'text-yellow-500' : 'text-emerald-700';
   const divClassNames = classnames('font-bold', color);
 
+  const handleButtonClick = () => {
+    if (isClicked) {
+      setIsDescending(!isDescending);
+    } else {
+      setIsDescending(false);
+      setClickedId(id);
+    }
+  };
+
   return (
-    <button className="w-1/12 px-5" onClick={() => setClickedId(id)}>
+    <button
+      className="w-1/12 px-5 flex items-center justify-start"
+      onClick={handleButtonClick}
+    >
       <div className={divClassNames}>{text}</div>
+      {isClicked && (isDescending ? <FiChevronDown /> : <FiChevronUp />)}
     </button>
   );
 }
 const CollectionTable = () => {
   const [clickedId, setClickedId] = useState(null);
+  const [isDescending, setIsDescending] = useState(false);
 
   return (
     <div className="mt-5 pt-5">
       <div className="flex items-center w-max h-12 m-5">
-        <div className="pr-36 font-bold text-emerald-700">COLLECTION</div>
+        <button className="pr-36" onClick={() => setClickedId(null)}>
+          <div className="font-bold text-emerald-700">COLLECTION</div>
+        </button>
         <div className="flex items-center flex-row w-screen">
           {tableHeaders.map((item, index) => {
             return (
@@ -90,6 +115,8 @@ const CollectionTable = () => {
                 key={index}
                 clickedId={clickedId}
                 setClickedId={setClickedId}
+                setIsDescending={setIsDescending}
+                isDescending={isDescending}
               />
             );
           })}
