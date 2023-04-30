@@ -55,7 +55,7 @@ function Carousel() {
             />
             <p
               className="absolute bottom-5 left-5 px-4 py-2
-             text-white text-lg font-extrabold bg-opacity-75 backdrop-blur-lg"
+             text-white text-lg font-extrabold bg-opacity-75 bg-gray-600 backdrop-blur-lg"
             >
               {item.text}
             </p>
