@@ -133,20 +133,12 @@ export function sorter(clickedId, isDescending, setIsDescending, setShownData) {
     case 5:
       setIsDescending(!isDescending);
       if (isDescending) {
-        sortAscSevenDayVolume(setShownData);
-      } else {
-        sortAscSevenDayVolume(setShownData);
-      }
-      break;
-    case 6:
-      setIsDescending(!isDescending);
-      if (isDescending) {
         sortDescOwners(setShownData);
       } else {
         sortAscOwners(setShownData);
       }
       break;
-    case 7:
+    case 6:
       setIsDescending(!isDescending);
       if (isDescending) {
         sortDescSupply(setShownData);
@@ -154,7 +146,7 @@ export function sorter(clickedId, isDescending, setIsDescending, setShownData) {
         sortAscSupply(setShownData);
       }
       break;
-    case 8:
+    case 7:
       setIsDescending(!isDescending);
       if (isDescending) {
         sortDescMaxSupply(setShownData);
