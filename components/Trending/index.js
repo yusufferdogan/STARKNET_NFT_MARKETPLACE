@@ -8,6 +8,7 @@ import { collectionData } from './data';
 import classnames from 'classnames';
 import { FiChevronUp, FiChevronDown } from 'react-icons/fi';
 import { sorter } from './sorters';
+import EthereumLogo from './ethereum';
 
 function CollectionItem(props) {
   const {
@@ -30,35 +31,45 @@ function CollectionItem(props) {
       <div className="flex items-center pr-40">
         {/*eslint-disable-next-line @next/next/no-img-element*/}
         <img
-          className="w-12 h-12 rounded-full"
+          className="w-12 h-12 rounded-full "
           src="https://images.blur.io/_blur-prod/0xed5af388653567af2f388e6224dc7c4b3241c544/4361-29b9f08af6d9c52f?w=128&h=128"
           alt={collection}
         />
-        <div className="w-12 px-5">
-          {words.map((word, index) => (
-            <span key={index}>{word} </span>
-          ))}
-        </div>
+        <div className="w-12 px-5 whitespace-nowrap">{collection}</div>
       </div>
-      <div className="flex justify-self-stretch flex-row w-screen">
-        {/* <p className="w-1/12 px-5"></p> */}
-        <p className="w-1/12 px-5 self-end">{floorPrice}</p>
+      <div className="flex justify-self-stretch flex-row items-start w-screen">
+        <div className="w-1/12 px-5 flex items-center">
+          <span className="pr-2 flex justify-start">
+            <EthereumLogo width={10} height={10}></EthereumLogo>
+          </span>
+          <p className="justify-end">{floorPrice.toFixed(2)}</p>
+        </div>
         <p
-          className={`w-1/12 px-5 self-end ${
+          className={`w-1/12 px-5 align-baseline items-center ${
             oneDayChange < 0 ? 'text-red-500' : 'text-green-500'
           }`}
         >
           {oneDayChange + '%'}
         </p>{' '}
         <p
-          className={`w-1/12 px-5 self-end ${
+          className={`w-1/12 px-5  ${
             sevenDayChange < 0 ? 'text-red-500' : 'text-green-500'
           }`}
         >
           {sevenDayChange + '%'}
         </p>
-        <p className="w-1/12 px-5 text-left">{oneDayVolume}</p>
-        <p className="w-1/12 px-5">{sevenDayVolume}</p>
+        <div className="w-1/12 px-5 flex items-center">
+          <span className="pr-2 flex justify-start">
+            <EthereumLogo width={10} height={10}></EthereumLogo>
+          </span>
+          <p className="justify-end">{oneDayVolume.toFixed(2)}</p>
+        </div>{' '}
+        <div className="w-1/12 px-5 flex items-center">
+          <span className="pr-2 flex justify-start">
+            <EthereumLogo width={10} height={10}></EthereumLogo>
+          </span>
+          <p className="justify-end">{sevenDayVolume.toFixed(2)}</p>
+        </div>{' '}
         <p className="w-1/12 px-5">{owners}</p>
         <p className="w-1/12 px-5">{supply}</p>
         <p className="w-1/12 px-5">{maxSupply}</p>
@@ -158,9 +169,9 @@ const CollectionTable = () => {
           sevenDayChange={item.sevenDayChange}
           oneDayVolume={item.oneDayVolume}
           sevenDayVolume={item.sevenDayVolume}
-          owners={item.owners}
-          supply={item.supply}
-          maxSupply={item.maxSupply}
+          owners={item.owners.toLocaleString('tr-TR')}
+          supply={item.supply.toLocaleString('tr-TR')}
+          maxSupply={item.maxSupply.toLocaleString('tr-TR')}
           imageUrl={item.imageUrl}
         />
       ))}

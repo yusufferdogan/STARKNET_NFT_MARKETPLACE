@@ -11,7 +11,7 @@ export const collectionData = [
     maxSupply: 10000,
   },
   {
-    collection: 'CryptoPunks',
+    collection: 'Crypto Punks',
     floorPrice: 277.54,
     oneDayChange: -1.59,
     sevenDayChange: -4.21,
@@ -52,7 +52,7 @@ export const collectionData = [
     sevenDayVolume: 67.01,
     owners: 5211,
     supply: 8888,
-    maxSupply: 15000,
+    maxSupply: 8888,
   },
   {
     collection: 'Gutter Cat Gang',
@@ -77,7 +77,7 @@ export const collectionData = [
     maxSupply: 3000,
   },
   {
-    collection: 'Mutant Ape Yacht Club',
+    collection: 'MutantApeYachtClub',
     floorPrice: 14.55,
     oneDayChange: 0.49,
     sevenDayChange: -5.35,
