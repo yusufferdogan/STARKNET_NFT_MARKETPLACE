@@ -58,7 +58,7 @@ export function OpenModal({ available, connect, connectors }) {
           // overlayClassName={css.overlay}
         >
           <div className="flex justify-center items-center flex-col min-h-screen">
-            <div className="relative rounded-lg shadow bg bg-gradient-to-r from-gray-100 via-gray-400 to-gray-700 ">
+            <div className="relative rounded-lg shadow bg bg-zinc-900">
               <button
                 type="button"
                 className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
@@ -87,8 +87,8 @@ export function OpenModal({ available, connect, connectors }) {
                   <button
                     data-modal-hide="popup-modal"
                     type="button"
-                    className="text-white bg-gray-900 hover:bg-gray-700 focus:ring-4 focus:outline-none
-                    focus:ring-gray-800 rounded-lg border border-gray-900 text-md font-medium px-5 py-2.5 shadow-md
+                    className="text-white bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:outline-none
+                    focus:ring-gray-600 rounded-lg border border-gray-900 text-md font-medium px-5 py-2.5 shadow-md
                      hover:text-white focus:z-10"
                     onClick={() => connectToWallet(connectors[0])}
                   >
@@ -110,8 +110,8 @@ export function OpenModal({ available, connect, connectors }) {
                   <button
                     data-modal-hide="popup-modal"
                     type="button"
-                    className="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none
-                     focus:ring-gray-800 rounded-lg border border-gray-900 text-md font-medium px-5 py-2.5 shadow-md
+                    className="text-white bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:outline-none
+                     focus:ring-gray-600 rounded-lg border border-gray-900 text-md font-medium px-5 py-2.5 shadow-md
                       hover:text-white focus:z-10"
                     onClick={() => connectToWallet(connectors[1])}
                   >
