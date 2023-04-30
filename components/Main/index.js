@@ -4,7 +4,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'tailwindcss/tailwind.css';
 import Trending from '../Trending';
-import BackupTranding from '../Trending/backup';
 import { ToastContainer, toast } from 'react-toastify';
 
 const data = [
