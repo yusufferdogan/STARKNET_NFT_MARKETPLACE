@@ -24,8 +24,6 @@ function CollectionItem(props) {
     imageUrl,
   } = props;
 
-  const words = collection.split(' ');
-
   return (
     <div className="flex items-center m-6 pt-6 w-max">
       <div className="flex items-center pr-40">
@@ -183,3 +181,4 @@ function Trending() {
 }
 
 export default Trending;
+export { CollectionItem };
