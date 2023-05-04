@@ -1,4 +1,7 @@
 import data from '../data/data.json';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
 export function Card({ id, imageUrl }) {
   return (
     <div
@@ -7,7 +10,7 @@ export function Card({ id, imageUrl }) {
       tabIndex="0"
     >
       <a></a>
-      <div className="h-72">
+      <div className="xl:h-72 lg:h-64">
         <img
           className="object-cover w-full h-full"
           src={imageUrl}
@@ -32,18 +35,41 @@ export function Card({ id, imageUrl }) {
     </div>
   );
 }
+import useSWR from 'swr';
+
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
 export function Grid() {
+  const { data, error } = useSWR('/api/resource', (url) =>
+    Promise.all([...Array(332)].map((_, i) => fetcher(`${url}?id=${i}`)))
+  );
+
+  if (data) {
+    console.log(data[0].attributes[0].value);
+    const arr = [];
+    for (let index = 0; index < 332; index++) {
+      arr.push(data[index].attributes[0].value);
+    }
+    const counts = arr.reduce((acc, val) => {
+      acc[val] = acc[val] ? acc[val] + 1 : 1;
+      return acc;
+    }, {});
+
+    const mySet = new Set(arr);
+
+    console.log(counts);
+  }
+
+  if (error) return <div>Error fetching data</div>;
+  if (!data) return <div>Loading...</div>;
+
+  const cards = data.map((resource, i) => (
+    <Card key={i} imageUrl={resource.image} id={i} />
+  ));
+
   return (
-    <div className="grid grid-cols-5 gap-4">
-      {data.collection.map((resource, index) => {
-        return (
-          <Card
-            key={index}
-            imageUrl={resource.image}
-            id={resource.tokenId}
-          ></Card>
-        );
-      })}
+    <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 2xl:grid-cols-5 gap-4">
+      {cards}
     </div>
   );
 }
