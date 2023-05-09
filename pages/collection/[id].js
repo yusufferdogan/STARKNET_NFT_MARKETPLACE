@@ -6,6 +6,7 @@ import { Grid } from './components/grid';
 import Header from '../../components/Header';
 import { useState } from 'react';
 import { BiSliderAlt } from 'react-icons/bi';
+import { MdOutlineSell } from 'react-icons/md';
 import { RadioButton } from '../collection/components/radio';
 const item = {
   collection: 'BoredApeYachtClub',
@@ -51,6 +52,7 @@ function Collection() {
   const router = useRouter();
   const { id } = router.query;
   const [selectedTraits, setSelectedTraits] = useState([]);
+  const [isChecked, setIsChecked] = useState(1);
 
   return (
     <div className="h-screen overflow-y-hidden flex flex-col p-0 m-0">
@@ -76,17 +78,37 @@ function Collection() {
             className="w-1/5 hidden md:block h-screen max-h-screen 
           overflow-y-auto overflow-hidden"
           >
-            <div className="flex ml-10 mt-5">
-              <BiSliderAlt size={22}></BiSliderAlt>
-              <p className="pl-5 font-bold font-mono"> ATTRIBUTES </p>
+            <div className="flex justify-between ml-10 my-10">
+              <div className="flex">
+                <MdOutlineSell size={22}></MdOutlineSell>
+                <p className="pl-5 font-bold font-mono"> STATUS </p>
+              </div>
+              <button className="mr-10 font-bold font-sans text-green-500">
+                RESET
+              </button>
             </div>
 
-            <div className="ml-10 mt-5 gap-4 flex-col flex">
-              <RadioButton label={'BUY NOW'} />
-              <RadioButton label={'SHOW ALL'} />
+            <div className="ml-10 my-6 gap-4 flex-col flex">
+              <RadioButton
+                label={'BUY NOW'}
+                isChecked={isChecked}
+                setIsChecked={setIsChecked}
+                id={1}
+              />
+              <RadioButton
+                label={'SHOW ALL'}
+                isChecked={isChecked}
+                setIsChecked={setIsChecked}
+                id={2}
+              />
             </div>
-            <div className="border border-gray-500 mx-10 mt-5"></div>
-
+            <div className="border border-gray-500 mx-10 mt-10"></div>
+            <div className="flex justify-between ml-10 mt-10">
+              <div className="flex">
+                <BiSliderAlt size={22}></BiSliderAlt>
+                <p className="pl-5 font-bold font-mono"> ATTRIBUTES </p>
+              </div>
+            </div>
             <div className="ml-10 mt-5 mb-40 pb-20 overflow-hidden">
               <Dropdown name="Background" options={options}></Dropdown>
               <Dropdown name="Clothes" options={options}></Dropdown>
