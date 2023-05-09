@@ -24,8 +24,8 @@ export function CollectionItem(props) {
     imageUrl,
   } = props;
   return (
-    <div className="mt-5 py-5">
-      <div className="flex py-5">
+    <div className="mt-5">
+      <div className="flex py-1">
         <button className="w-1/4">
           <div className="flex items-center">
             {/*eslint-disable-next-line @next/next/no-img-element*/}
