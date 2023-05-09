@@ -6,7 +6,7 @@ export function Dropdown({ name, options }) {
     <div className="py-2">
       <button
         type="button"
-        className="max-w-xs md:max-w-none hidden lg:block 2xl:w-80 xl:w-72 lg:w-40 md:w-32"
+        className="md:max-w-none hidden lg:block 2xl:w-80 xl:w-72 lg:w-40 md:w-32"
         id="options-menu"
         onClick={() => setIsOpen(!isOpen)}
         aria-haspopup="true"
@@ -22,7 +22,7 @@ export function Dropdown({ name, options }) {
       </button>
       {isOpen && (
         <div
-          className="pt-2"
+          className="pt-2 mr-10"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="options-menu"
