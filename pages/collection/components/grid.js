@@ -11,6 +11,7 @@ export function Card({ id, imageUrl }) {
     >
       <a></a>
       <div className="xl:h-72 lg:h-64">
+        {/*eslint-disable-next-line @next/next/no-img-element*/}
         <img
           className="object-cover w-full h-full"
           src={imageUrl}
@@ -32,6 +33,7 @@ export function Card({ id, imageUrl }) {
           <span className="font-bold text-gray-300">ID: #{id} </span>{' '}
         </div>{' '}
       </div>
+      <div className="border border-gray-500"></div>
     </div>
   );
 }
@@ -41,13 +43,13 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export function Grid() {
   const { data, error } = useSWR('/api/resource', (url) =>
-    Promise.all([...Array(332)].map((_, i) => fetcher(`${url}?id=${i}`)))
+    Promise.all([...Array(15)].map((_, i) => fetcher(`${url}?id=${i}`)))
   );
 
   if (data) {
-    console.log(data[0].attributes[0].value);
+    console.log(data.length);
     const arr = [];
-    for (let index = 0; index < 332; index++) {
+    for (let index = 0; index < 15; index++) {
       arr.push(data[index].attributes[0].value);
     }
     const counts = arr.reduce((acc, val) => {
@@ -70,6 +72,7 @@ export function Grid() {
   return (
     <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 2xl:grid-cols-5 gap-4">
       {cards}
+      <div className="h-52"></div>
     </div>
   );
 }

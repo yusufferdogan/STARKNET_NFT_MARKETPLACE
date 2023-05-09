@@ -168,7 +168,10 @@ export function ConnectWallet() {
     return (
       <button
         type="button"
-        className="text-black bg-white hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-emerald-900 shadow-lg shadow-gray-400/50 dark:shadow-lg dark:shadow-gray-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+        className="text-black bg-white hover:bg-gray-200 focus:ring-4 
+        focus:outline-none focus:ring-emerald-900 shadow-lg
+         shadow-gray-400/50 dark:shadow-lg dark:shadow-gray-800/80 
+         font-medium rounded-lg text-sm text-center mt-2"
         onClick={() => {
           navigator.clipboard.writeText(address);
           toast.success('Address Copied', {

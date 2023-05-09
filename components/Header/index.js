@@ -6,7 +6,7 @@ import Image from 'next/image';
 function Header() {
   return (
     <header aria-label="Site Header">
-      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 items-center">
         <div className="flex h-16 items-center justify-between ">
           <div className="md:flex md:items-center md:gap-12">
             <Link href="/">
@@ -76,13 +76,16 @@ function Header() {
               </ul>
             </nav>
           </div>
-          <div className="flex items-center gap-4">
-            <div className="sm:flex sm:gap-4">
+          <div className="flex items-center">
+            <div className="">
               <ConnectWallet></ConnectWallet>
             </div>
           </div>
           <div className="block md:hidden">
-            <button className="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">
+            <button
+              className="rounded bg-gray-100 p-2
+             text-gray-600 transition hover:text-gray-600/75"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
