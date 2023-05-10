@@ -1,16 +1,15 @@
 import { useRouter } from 'next/router';
-import { CollectionItem } from './components/collectionItem';
-import { Dropdown } from './components/dropDown';
-import { Grid } from './components/grid';
+import { CollectionItem } from '../../components/Collection/components/collectionItem';
+import { Dropdown } from '../../components/Collection/components/dropDown';
+import { Grid } from '../../components/Collection/components/grid';
+import { RadioButton } from '../../components/Collection/components/radio';
 
 import Header from '../../components/Header';
-import { RadioButton } from '../collection/components/radio';
-import { useState } from 'react';
 
+import { useState } from 'react';
 import { BiSliderAlt } from 'react-icons/bi';
-import { MdOutlineSell, MdOutlineAnalytics } from 'react-icons/md';
+import { MdOutlineSell } from 'react-icons/md';
 import { ImStack } from 'react-icons/im';
-import { GiThorHammer } from 'react-icons/gi';
 import { AiOutlineLineChart } from 'react-icons/ai';
 import { FaListUl } from 'react-icons/fa';
 
