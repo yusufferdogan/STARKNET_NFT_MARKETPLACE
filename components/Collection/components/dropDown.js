@@ -12,7 +12,7 @@ export function Dropdown({ name, options }) {
         aria-haspopup="true"
         aria-expanded="true"
       >
-        <div className="flex justify-between">
+        <div className="flex justify-between mr-10">
           <p>{name}</p>
           <div className="flex gap-2 items-center">
             <p>{options.length}</p>

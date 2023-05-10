@@ -4,20 +4,26 @@ import { Dropdown } from './components/dropDown';
 import { Grid } from './components/grid';
 
 import Header from '../../components/Header';
-import { useState } from 'react';
-import { BiSliderAlt } from 'react-icons/bi';
-import { MdOutlineSell } from 'react-icons/md';
 import { RadioButton } from '../collection/components/radio';
+import { useState } from 'react';
+
+import { BiSliderAlt } from 'react-icons/bi';
+import { MdOutlineSell, MdOutlineAnalytics } from 'react-icons/md';
+import { ImStack } from 'react-icons/im';
+import { GiThorHammer } from 'react-icons/gi';
+import { AiOutlineLineChart } from 'react-icons/ai';
+import { FaListUl } from 'react-icons/fa';
+
 const item = {
-  collection: 'BoredApeYachtClub',
-  floorPrice: 50.437,
-  oneDayChange: 49.87,
-  sevenDayChange: 5.96,
-  oneDayVolume: 5,
-  sevenDayVolume: 2169.2,
-  owners: 5618,
-  supply: 5652,
-  maxSupply: 10000,
+  collection: 'StarkGuardians',
+  floorPrice: 0.26,
+  oneDayChange: -0.03,
+  sevenDayChange: -0.07,
+  oneDayVolume: 0.12,
+  sevenDayVolume: 0.6,
+  owners: 221,
+  supply: 326,
+  maxSupply: 333,
 };
 const options = [
   { value: 'turquois_octopus', count: 9 },
@@ -48,18 +54,57 @@ const options = [
   { value: 'dolven labs', count: 1 },
   { value: 'alpha drops', count: 1 },
 ];
+function ItemsOrGrid({ isGrid, setIsGrid }) {
+  return (
+    <div className="flex h-5 m-5 items-center">
+      <button
+        className={
+          'flex items-start ' +
+          (isGrid === 1 ? 'text-yellow-500' : 'text-gray-400 hover:text-white')
+        }
+        onClick={() => setIsGrid(1)}
+      >
+        <ImStack size={22} />
+        <p className={'pl-3 font-bold font-mono '}>ITEMS</p>
+      </button>
+      <p className="w-5"></p>
+      <button
+        onClick={() => setIsGrid(2)}
+        className={
+          'flex items-start  ' +
+          (isGrid === 2 ? 'text-yellow-500' : 'text-gray-400 hover:text-white')
+        }
+      >
+        <FaListUl size={22} />
+        <p className={'pl-3 font-bold font-mono '}> ACTIVITY </p>
+      </button>{' '}
+      <p className="w-5"></p>
+      <button
+        onClick={() => setIsGrid(3)}
+        className={
+          'flex items-start ' +
+          (isGrid === 3 ? 'text-yellow-500' : 'text-gray-400 hover:text-white')
+        }
+      >
+        <AiOutlineLineChart className={''} size={22} />
+        <p className={'pl-3 font-bold font-mono '}> Analytics </p>
+      </button>{' '}
+    </div>
+  );
+}
 function Collection() {
   const router = useRouter();
   const { id } = router.query;
   const [selectedTraits, setSelectedTraits] = useState([]);
   const [isChecked, setIsChecked] = useState(1);
+  const [isGrid, setIsGrid] = useState(1);
 
   return (
     <div className="h-screen overflow-y-hidden flex flex-col p-0 m-0">
       <Header></Header>
       <div className="border border-gray-500"></div>
       <div className="flex-1">
-        <div className="px-5 overflow-y-hidden overflow-hidden pb-5">
+        <div className="px-5 overflow-y-hidden overflow-hidden">
           <CollectionItem
             collection={item.collection}
             floorPrice={item.floorPrice}
@@ -74,11 +119,8 @@ function Collection() {
           />
         </div>
         <div className="flex justify-center justify-items-center justify-self-center">
-          <div
-            className="w-1/5 hidden md:block h-screen max-h-screen 
-          overflow-y-auto overflow-hidden"
-          >
-            <div className="flex justify-between ml-10 my-10">
+          <div className="w-1/5 hidden md:block h-screen max-h-screen overflow-y-auto overflow-hidden">
+            <div className="flex justify-between ml-10 mt-6 mb-10">
               <div className="flex">
                 <MdOutlineSell size={22}></MdOutlineSell>
                 <p className="pl-5 font-bold font-mono"> STATUS </p>
@@ -120,12 +162,21 @@ function Collection() {
             </div>
           </div>
           <div
-            className="appearance-none border
-           border-gray-500 border-l h-screen overflow-y-auto
+            className="appearance-none  h-screen overflow-y-auto
             w-4/5 justify-center justify-items-center 
-            justify-self-center pb-25 pt-1 mx-5"
+            justify-self-center pb-25 mx-5"
           >
-            <Grid></Grid>
+            <ItemsOrGrid isGrid={isGrid} setIsGrid={setIsGrid} />
+            <div className="pb-5">
+              <div className="border border-gray-500 border-b"></div>
+            </div>
+            {isGrid === 1 ? (
+              <Grid />
+            ) : isGrid === 2 ? (
+              <div>ACTIVITY</div>
+            ) : isGrid === 3 ? (
+              <div>ANALYTICS</div>
+            ) : null}
           </div>
         </div>
       </div>

@@ -30,8 +30,8 @@ export function CollectionItem(props) {
           <div className="flex items-center">
             {/*eslint-disable-next-line @next/next/no-img-element*/}
             <img
-              className="w-12 h-12 rounded-full "
-              src="https://images.blur.io/_blur-prod/0xed5af388653567af2f388e6224dc7c4b3241c544/4361-29b9f08af6d9c52f?w=128&h=128"
+              className="w-16 h-16"
+              src="https://mintsquare.sfo3.cdn.digitaloceanspaces.com/mintsquare/collections/starkguardian.jpeg"
               alt={collection}
             />
             <div className="w-12 px-5 text-lg whitespace-nowrap">
