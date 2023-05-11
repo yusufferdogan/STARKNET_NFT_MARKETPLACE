@@ -2,6 +2,8 @@ import { BiSliderAlt } from 'react-icons/bi';
 import { Dropdown } from '../../components/Collection/components/dropDown';
 import { RadioButton } from '../../components/Collection/components/radio';
 import { MdOutlineSell } from 'react-icons/md';
+import { CollectionItem } from '../../components/Collection/components/collectionItem';
+
 const options = [
   { value: 'turquois_octopus', count: 9 },
   { value: 'meadow_octopus', count: 13 },
@@ -74,6 +76,36 @@ export function FilterTraits({ isChecked, setIsChecked }) {
         <Dropdown name="Hat" options={options}></Dropdown>
         <Dropdown name="Mouth" options={options}></Dropdown>
       </div>
+    </div>
+  );
+}
+const item = {
+  collection: 'StarkGuardians',
+  floorPrice: 0.26,
+  oneDayChange: -0.03,
+  sevenDayChange: -0.07,
+  oneDayVolume: 0.12,
+  sevenDayVolume: 0.6,
+  owners: 221,
+  supply: 326,
+  maxSupply: 333,
+};
+
+export function TopCollectionData() {
+  return (
+    <div className="px-5 overflow-y-hidden overflow-hidden">
+      <CollectionItem
+        collection={item.collection}
+        floorPrice={item.floorPrice}
+        oneDayChange={item.oneDayChange}
+        sevenDayChange={item.sevenDayChange}
+        oneDayVolume={item.oneDayVolume}
+        sevenDayVolume={item.sevenDayVolume}
+        owners={item.owners.toLocaleString('tr-TR')}
+        supply={item.supply.toLocaleString('tr-TR')}
+        maxSupply={item.maxSupply.toLocaleString('tr-TR')}
+        imageUrl={item.imageUrl}
+      />
     </div>
   );
 }

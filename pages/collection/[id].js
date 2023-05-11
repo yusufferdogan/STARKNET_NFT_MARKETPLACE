@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-import { CollectionItem } from '../../components/Collection/components/collectionItem';
 import { Grid } from '../../components/Collection/components/grid';
 import { Activity } from '../../components/Collection/components/activity';
 
@@ -10,17 +9,7 @@ import { ImStack } from 'react-icons/im';
 import { AiOutlineLineChart } from 'react-icons/ai';
 import { FaListUl } from 'react-icons/fa';
 import { FilterTraits } from './utils';
-const item = {
-  collection: 'StarkGuardians',
-  floorPrice: 0.26,
-  oneDayChange: -0.03,
-  sevenDayChange: -0.07,
-  oneDayVolume: 0.12,
-  sevenDayVolume: 0.6,
-  owners: 221,
-  supply: 326,
-  maxSupply: 333,
-};
+import { TopCollectionData } from './utils';
 
 function ItemsOrGrid({ isGrid, setIsGrid }) {
   return (
@@ -72,24 +61,8 @@ function Collection() {
       <Header></Header>
       <div className="border border-gray-500"></div>
       <div className="flex-1">
-        <div className="px-5 overflow-y-hidden overflow-hidden">
-          <CollectionItem
-            collection={item.collection}
-            floorPrice={item.floorPrice}
-            oneDayChange={item.oneDayChange}
-            sevenDayChange={item.sevenDayChange}
-            oneDayVolume={item.oneDayVolume}
-            sevenDayVolume={item.sevenDayVolume}
-            owners={item.owners.toLocaleString('tr-TR')}
-            supply={item.supply.toLocaleString('tr-TR')}
-            maxSupply={item.maxSupply.toLocaleString('tr-TR')}
-            imageUrl={item.imageUrl}
-          />
-        </div>
-        <div
-          className="flex justify-center justify-items-center
-         justify-self-center"
-        >
+        <TopCollectionData />
+        <div className="flex justify-center justify-items-center justify-self-center">
           <FilterTraits isChecked={isChecked} setIsChecked={setIsChecked} />
           <div
             className="appearance-none  h-screen overflow-y-auto

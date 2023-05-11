@@ -2,6 +2,8 @@ import EthereumLogo from '../../../components/Trending/ethereum';
 import { TableHeader } from './tableHeader';
 const tableHeaders = [
   { text: 'FLOOR PRICE' },
+  { text: 'LAST SALE' },
+  { text: 'TOP OFFER' },
   { text: '1D CHANGE' },
   { text: '7D CHANGE' },
   { text: '1D VOLUME' },
@@ -9,6 +11,7 @@ const tableHeaders = [
   { text: 'OWNERS' },
   { text: 'SUPPLY' },
   { text: 'MAX SUPPLY' },
+  { text: 'LISTED' },
 ];
 export function CollectionItem(props) {
   const {
@@ -23,10 +26,11 @@ export function CollectionItem(props) {
     maxSupply,
     imageUrl,
   } = props;
+  const itemClass = 'w-1/6 flex items-center justify-start';
   return (
     <div className="mt-5">
       <div className="flex py-1">
-        <button className="w-1/4">
+        <button className="w-1/5">
           <div className="flex items-center">
             {/*eslint-disable-next-line @next/next/no-img-element*/}
             <img
@@ -39,23 +43,34 @@ export function CollectionItem(props) {
             </div>
           </div>
         </button>
-        <div className="w-3/4">
+        <div className="w-4/5">
           <div className="flex flex-grow">
             {tableHeaders.map((item, index) => {
-              console.log('i:', index, ':', item.text);
               return <TableHeader text={item.text} id={index} key={index} />;
             })}
           </div>
           <div className="flex flex-grow py-5 font-mono font-semibold">
-            <div className="w-1/6 px-5 flex items-center justify-start">
+            <div className={itemClass}>
               <span className="pr-2 flex justify-start">
-                <EthereumLogo width={10} height={10}></EthereumLogo>
+                <EthereumLogo width={20} height={25}></EthereumLogo>
+              </span>
+              <p className="justify-end">{floorPrice.toFixed(2)}</p>
+            </div>{' '}
+            <div className={itemClass}>
+              <span className="pr-2 flex justify-start">
+                <EthereumLogo width={20} height={25}></EthereumLogo>
+              </span>
+              <p className="justify-end">{floorPrice.toFixed(2)}</p>
+            </div>{' '}
+            <div className={itemClass}>
+              <span className="pr-2 flex justify-start">
+                <EthereumLogo width={20} height={25}></EthereumLogo>
               </span>
               <p className="justify-end">{floorPrice.toFixed(2)}</p>
             </div>
-            <div className="w-1/6 px-5 flex items-center justify-start">
+            <div className={itemClass}>
               <span className="pr-2 flex justify-start">
-                <EthereumLogo width={10} height={10}></EthereumLogo>
+                <EthereumLogo width={20} height={25}></EthereumLogo>
               </span>
               <p
                 className={`${
@@ -65,9 +80,9 @@ export function CollectionItem(props) {
                 {oneDayChange}
               </p>{' '}
             </div>
-            <div className="w-1/6 px-5 flex items-center justify-start">
+            <div className={itemClass}>
               <span className="pr-2 flex justify-start">
-                <EthereumLogo width={10} height={10}></EthereumLogo>
+                <EthereumLogo width={20} height={25}></EthereumLogo>
               </span>
               <p
                 className={`${
@@ -77,27 +92,22 @@ export function CollectionItem(props) {
                 {sevenDayChange}
               </p>{' '}
             </div>
-            <div className="w-1/6 px-5 flex items-center justify-start">
+            <div className={itemClass}>
               <span className="pr-2 flex justify-start">
-                <EthereumLogo width={10} height={10}></EthereumLogo>
+                <EthereumLogo width={20} height={25}></EthereumLogo>
               </span>
               <p>{oneDayVolume}</p>{' '}
             </div>
-            <div className="w-1/6 px-5 flex items-center justify-start">
+            <div className={itemClass}>
               <span className="pr-2 flex justify-start">
-                <EthereumLogo width={10} height={10}></EthereumLogo>
+                <EthereumLogo width={20} height={25}></EthereumLogo>
               </span>
               <p>{sevenDayVolume}</p>
             </div>
-            <div className="w-1/6 px-5 flex items-center justify-start">
-              {owners}
-            </div>
-            <div className="w-1/6 px-5 flex items-center justify-start">
-              {supply}
-            </div>
-            <div className="w-1/6 px-5 flex items-center justify-start">
-              {maxSupply}
-            </div>
+            <div className={itemClass}>{owners}</div>
+            <div className={itemClass}>{supply}</div>
+            <div className={itemClass}>{maxSupply}</div>{' '}
+            <div className={itemClass}>{`24 (%7)`}</div>{' '}
           </div>
         </div>
       </div>

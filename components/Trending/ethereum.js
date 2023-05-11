@@ -1,9 +1,9 @@
-export default function EthereumLogo() {
+export default function EthereumLogo({ width, height }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="25"
+      width={width}
+      height={height}
       preserveAspectRatio="xMidYMid"
       viewBox="0 0 256 417"
       id="ethereum"
