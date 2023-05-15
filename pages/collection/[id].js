@@ -1,10 +1,11 @@
 import { useRouter } from 'next/router';
 import { Grid } from '../../components/Collection/components/grid';
 import { Activity } from '../../components/Collection/components/activity';
+import { Analytics } from '../../components/Collection/components/analytics';
 
 import Header from '../../components/Header';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ImStack } from 'react-icons/im';
 import { AiOutlineLineChart } from 'react-icons/ai';
 import { FaListUl } from 'react-icons/fa';
@@ -44,7 +45,7 @@ function ItemsOrGrid({ isGrid, setIsGrid }) {
         }
       >
         <AiOutlineLineChart className={''} size={22} />
-        <p className={'pl-3 font-bold font-mono '}> Analytics </p>
+        <p className={'pl-3 font-bold font-mono '}> ANALYTICS </p>
       </button>{' '}
     </div>
   );
@@ -55,31 +56,52 @@ function Collection() {
   const [selectedTraits, setSelectedTraits] = useState([]);
   const [isChecked, setIsChecked] = useState(1);
   const [isGrid, setIsGrid] = useState(1);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <div className="h-screen overflow-y-hidden flex flex-col p-0 m-0">
       <Header></Header>
       <div className="border border-gray-500"></div>
       <div className="flex-1">
-        <TopCollectionData />
+        {screenWidth > 1400 ? <TopCollectionData /> : <div></div>}
         <div className="flex justify-center justify-items-center justify-self-center">
-          <FilterTraits isChecked={isChecked} setIsChecked={setIsChecked} />
-          <div
-            className="appearance-none  h-screen overflow-y-auto
-            w-4/5 justify-center justify-items-center 
-            justify-self-center pb-25 mx-5"
-          >
+          {screenWidth > 1535 ? (
+            <FilterTraits isChecked={isChecked} setIsChecked={setIsChecked} />
+          ) : (
+            <div></div>
+          )}
+          <div className="3xl:w-4/5 2xl:w-4/5 xl:w-full w-full">
             <ItemsOrGrid isGrid={isGrid} setIsGrid={setIsGrid} />
             <div className="pb-5">
               <div className="border border-gray-500 border-b"></div>
             </div>
-            {isGrid === 1 ? (
-              <Grid />
-            ) : isGrid === 2 ? (
-              <Activity />
-            ) : isGrid === 3 ? (
-              <div>ANALYTICS</div>
-            ) : null}
+            <div>
+              {isGrid === 1 ? (
+                <div
+                  className="appearance-none  h-screen overflow-y-auto
+                justify-center justify-items-center 
+                 justify-self-center pb-25 mx-5"
+                >
+                  <Grid />
+                </div>
+              ) : isGrid === 2 ? (
+                <Activity />
+              ) : isGrid === 3 ? (
+                <Analytics />
+              ) : null}
+            </div>
           </div>
         </div>
       </div>
