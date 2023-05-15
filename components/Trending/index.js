@@ -37,8 +37,8 @@ function CollectionItem(props) {
       </div>
       <div className="flex justify-self-stretch flex-row items-start w-screen">
         <div className="w-1/12 px-5 flex items-center">
-          <span className="pr-2 flex justify-start">
-            <EthereumLogo width={10} height={10}></EthereumLogo>
+          <span className="pr-2 flex justify-center">
+            <EthereumLogo width={20} height={25}></EthereumLogo>
           </span>
           <p className="justify-end">{floorPrice.toFixed(2)}</p>
         </div>
@@ -58,13 +58,13 @@ function CollectionItem(props) {
         </p>
         <div className="w-1/12 px-5 flex items-center">
           <span className="pr-2 flex justify-start">
-            <EthereumLogo width={10} height={10}></EthereumLogo>
+            <EthereumLogo width={20} height={25}></EthereumLogo>
           </span>
           <p className="justify-end">{oneDayVolume.toFixed(2)}</p>
         </div>{' '}
         <div className="w-1/12 px-5 flex items-center">
           <span className="pr-2 flex justify-start">
-            <EthereumLogo width={10} height={10}></EthereumLogo>
+            <EthereumLogo width={20} height={25}></EthereumLogo>
           </span>
           <p className="justify-end">{sevenDayVolume.toFixed(2)}</p>
         </div>{' '}
