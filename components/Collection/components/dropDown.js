@@ -6,23 +6,27 @@ export function Dropdown({ name, options }) {
     <div className="py-2">
       <button
         type="button"
-        className="md:max-w-none hidden lg:block 2xl:w-80 xl:w-72 lg:w-40 md:w-32"
+        className="6xl:w-96 5xl:w-80 4xl:w-72 3xl:w-64 2xl:w-60"
         id="options-menu"
         onClick={() => setIsOpen(!isOpen)}
         aria-haspopup="true"
         aria-expanded="true"
       >
-        <div className="flex justify-between mr-10">
-          <p>{name}</p>
-          <div className="flex gap-2 items-center">
-            <p>{options.length}</p>
-            {isOpen ? <BsChevronUp size={22} /> : <BsChevronDown size={22} />}
+        <div className="flex w-full justify-between">
+          <p className="w-3/6 text-left ">{name}</p>
+          <div className="w-2/12 flex items-center space-x-3">
+            <p className="w-1/2">{options.length}</p>
+            {isOpen ? (
+              <BsChevronUp className="w-1/2" color="white" />
+            ) : (
+              <BsChevronDown size={22} className="w-3/4" />
+            )}
           </div>
         </div>
       </button>
       {isOpen && (
         <div
-          className="pt-2 mr-10"
+          className="pt-2 2xl:w-72 xl:w-66 lg:w-60"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="options-menu"
@@ -33,11 +37,11 @@ export function Dropdown({ name, options }) {
               className="flex items-center justify-between p-1"
               role="none"
             >
-              <div className="flex items-center gap-5">
+              <div className="w-3/5 flex items-center space-x-2">
                 <CheckBox></CheckBox>
                 <p> {option.value}</p>
               </div>
-              <p>{option.count}</p>
+              <p className="w-1/6 text-right">{option.count}</p>
             </div>
           ))}
         </div>
