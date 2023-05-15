@@ -1,6 +1,7 @@
 import data from '../data/data.json';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import EthereumLogo from '../../../components/Trending/ethereum';
 
 export function Card({ id, imageUrl }) {
   return (
@@ -20,17 +21,18 @@ export function Card({ id, imageUrl }) {
       </div>
       <div className="px-6 py-4">
         <div className="flex justify-between">
-          <div className="text-base">
-            <span className="font-bold text-gray-300">Price </span>{' '}
-            <p> 14886$</p>
+          <div className="text-base flex space-x-2">
+            <span className="font-bold text-gray-300">Price </span> <p> 0.2 </p>
+            <EthereumLogo width={15} height={20}></EthereumLogo>
           </div>
           <div className="text-base">
-            <span className="font-bold text-gray-300">Last Sale </span>{' '}
-            <p> 14886$</p>
+            <span className="font-bold text-gray-300">ID: #{id} </span>{' '}
           </div>{' '}
         </div>
-        <div className="text-base mt-4">
-          <span className="font-bold text-gray-300">ID: #{id} </span>{' '}
+        <div className="text-base flex pt-5 space-x-2">
+          <span className="font-bold text-gray-300">Last Sale </span>{' '}
+          <p>0.26</p>
+          <EthereumLogo width={15} height={20}></EthereumLogo>
         </div>{' '}
       </div>
       <div className="border border-gray-500"></div>
@@ -71,7 +73,7 @@ export function Grid() {
 
   return (
     <div
-      className="grid lg:grid-cols-3 md:grid-cols-2
+      className="grid lg:grid-cols-3 xl:grid-cols-4 md:grid-cols-2
      sm:grid-cols-1 2xl:grid-cols-5 gap-3"
     >
       {cards}
