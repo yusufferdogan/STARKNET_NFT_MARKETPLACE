@@ -228,67 +228,74 @@ function filterList(filterActions) {
 export function Activity() {
   const [filterActions, setFilterActions] = useState([1, 2, 3, 4, 5]);
   return (
-    <div>
-      <div className="flex gap-5 mb-5">
-        <Toggle
-          key={1}
-          action={'SALE'}
-          filterActions={filterActions}
-          setFilterActions={setFilterActions}
-          actionId={1}
-        />
-        <Toggle
-          key={2}
-          action={'LIST'}
-          filterActions={filterActions}
-          setFilterActions={setFilterActions}
-          actionId={2}
-        />
-        <Toggle
-          key={3}
-          action={'OFFER'}
-          filterActions={filterActions}
-          setFilterActions={setFilterActions}
-          actionId={3}
-        />
-        <Toggle
-          key={4}
-          action={'TRANSFER'}
-          filterActions={filterActions}
-          setFilterActions={setFilterActions}
-          actionId={4}
-        />
-        <Toggle
-          action={'MINT'}
-          filterActions={filterActions}
-          setFilterActions={setFilterActions}
-          actionId={5}
-        />
+    <div className="mb-52 pb-20 h-screen ">
+      <div className="">
+        <div className="flex gap-5 mb-5 ">
+          <Toggle
+            key={1}
+            action={'SALE'}
+            filterActions={filterActions}
+            setFilterActions={setFilterActions}
+            actionId={1}
+          />
+          <Toggle
+            key={2}
+            action={'LIST'}
+            filterActions={filterActions}
+            setFilterActions={setFilterActions}
+            actionId={2}
+          />
+          <Toggle
+            key={3}
+            action={'OFFER'}
+            filterActions={filterActions}
+            setFilterActions={setFilterActions}
+            actionId={3}
+          />
+          <Toggle
+            key={4}
+            action={'TRANSFER'}
+            filterActions={filterActions}
+            setFilterActions={setFilterActions}
+            actionId={4}
+          />
+          <Toggle
+            action={'MINT'}
+            filterActions={filterActions}
+            setFilterActions={setFilterActions}
+            actionId={5}
+          />
+        </div>
+        <div className="border border-gray-800 my-5"></div>
       </div>
-      <div className="border border-gray-800 my-5"></div>
-
-      <div className="w-full flex flex-grow items-center text-start">
-        {tableHeaders.map((item, index) => {
-          return <TableHeader text={item.text} id={index} key={index} />;
-        })}
-      </div>
-      <div className="border border-gray-800 my-5"></div>
-      <div className="mb-52">
-        {filterList(filterActions).map((item, index) => {
-          return (
-            <ActivityItem
-              key={`${item.id}+${index}`}
-              action={item.action}
-              id={item.id}
-              price={item.price}
-              priceAsDollar={item.priceAsDollar}
-              from={item.from}
-              to={item.to}
-              date={item.date}
-              hour={item.hour}
-            ></ActivityItem>
-          );
-        })}
+      <div
+        className="appearance-none h-screen overflow-y-auto
+    justify-center justify-items-center 
+     justify-self-center pb-24 mb-40 mx-5"
+      >
+        <div className="w-full flex flex-grow items-center text-start">
+          {tableHeaders.map((item, index) => {
+            return <TableHeader text={item.text} id={index} key={index} />;
+          })}
+        </div>
+        <div className="border border-gray-800 my-5"></div>
+        <div className="mb-60">
+          {filterList(filterActions).map((item, index) => {
+            return (
+              <ActivityItem
+                key={`${item.id}+${index}`}
+                action={item.action}
+                id={item.id}
+                price={item.price}
+                priceAsDollar={item.priceAsDollar}
+                from={item.from}
+                to={item.to}
+                date={item.date}
+                hour={item.hour}
+              ></ActivityItem>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
